@@ -1,0 +1,41 @@
+<%- include('header') %>
+
+<h1>Objects Listing</h1>
+
+<div>
+    <div id="mainimagec">
+      <img id="mainimage" src="<%- data.primaryimageurl %>" style="height:450px;">
+      </img>
+    <br>
+    </div>
+    <%- data.title %>
+    <%- data.description %>
+    <%- data.accessionyear %>
+    <%- data.provenance %>
+</div>
+
+<br>
+<div>
+  <!-- generates comment form with an input box and button -->
+  <form id="commentform" action='/object/<%- object_id %>' method="post">
+      <input type="text" placeholder="Your Comment" id="yourcomment" name="query">
+      <button type="submit">Comment<i class=""></i></button>
+  </form>
+</div>
+
+<br>
+<div>
+<h1>Comments</h1>
+
+<div>
+  <!-- iterates over all comments within comments array for given object id -->
+  <ul>
+    <% if (data.id in comments) { comments[data.id].forEach(comment => { %>
+          <li> <%- comment %> </li>
+        <% })} else { %>
+          <li> No comments yet </li>
+        <% }; %>
+  </ul>
+</div>
+
+<%- include('footer') %>

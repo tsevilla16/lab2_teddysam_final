@@ -1,0 +1,40 @@
+<%- include('header') %>
+
+<h1>Objects Listing</h1>
+<div id="objectlist">
+    <table style="width:100%">
+      <thead>
+        <th>Title</th>
+        <th>Image</th>
+        <th>People</th>
+        <th>Museum Page</th>
+      </thead>
+      <tbody>
+        <% objects.forEach(object => { %>
+            <tr>
+              <td>
+                <a href="/object/<%- object.id %>">
+                  <%- object.id %>: <%- object.title %>
+                </a>
+              </td>
+              <td>
+                <a href="/object/<%- object.id %>">
+                  <img src="<%- object.primaryimageurl %>"style="height:40px"> </img>
+                </a>
+              </td>
+              <td>
+                <!-- if there is a list of people, iterates over list and prints names by joining elements -->
+                <!-- otherwise dispalys "No people!" -->
+                  <%- object.people ? object.people.map(el => el.name).join(", ") : "No people!" %>
+              </td>
+              <td>
+                  <a href="<%- object.url %>">See more from the Harvard Art Museums</a>
+                </a>
+              </td>
+            </tr>
+        <% }); %>
+      </tbody>
+    </table>
+</div>
+
+<%- include('footer') %>
